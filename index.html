@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mari Tani - Platform Pertanian Modern</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f9f0;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+        }
+        
+        .card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-leaf text-green-600 text-2xl mr-2"></i>
+                <h1 class="text-2xl font-bold text-green-600">Mari Tani</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#dashboard" class="text-gray-700 hover:text-green-600">Dashboard</a>
+                <a href="#kalkulator" class="text-gray-700 hover:text-green-600">Kalkulator Panen</a>
+                <a href="#pupuk" class="text-gray-700 hover:text-green-600">Rekomendasi Pupuk</a>
+                <a href="#konsultasi" class="text-gray-700 hover:text-green-600">Konsultasi Tanam</a>
+                <a href="#cuaca" class="text-gray-700 hover:text-green-600">Cuaca</a>
+                <a href="#katalog" class="text-gray-700 hover:text-green-600">Katalog Tanaman</a>
+            </nav>
+            <button class="md:hidden" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <a href="#dashboard" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
+            <a href="#kalkulator" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Kalkulator Panen</a>
+            <a href="#pupuk" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Rekomendasi Pupuk</a>
+            <a href="#konsultasi" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Konsultasi Tanam</a>
+            <a href="#cuaca" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Cuaca</a>
+            <a href="#katalog" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Katalog Tanaman</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="dashboard" class="hero-bg text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4">Selamat Datang di Mari Tani</h2>
+            <p class="text-xl mb-8">Platform modern untuk membantu petani dalam perencanaan dan pengelolaan pertanian</p>
+            <img src="https://via.placeholder.com/800x400/4ade80/ffffff?text=Pertanian+Inspiratif" alt="Pertanian" class="mx-auto rounded-lg shadow-lg">
+        </div>
+    </section>
+
+    <!-- Kalkulator Prediksi Panen -->
+    <section id="kalkulator" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center mb-8 text-green-600">Kalkulator Prediksi Panen</h3>
+            <div class="max-w-md mx-auto card p-6 rounded-lg bg-gray-50">
+                <form id="panenForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Luas Lahan (m²)</label>
+                        <input type="number" id="lahan" class="w-full px-3 py-2 border rounded-lg" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Jenis Tanaman</label>
+                        <select id="tanaman" class="w-full px-3 py-2 border rounded-lg" required>
+                            <option value="">Pilih Tanaman</option>
+                            <option value="padi">Padi</option>
+                            <option value="jagung">Jagung</option>
+                            <option value="cabai">Cabai</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-full hover:bg-green-700">Hitung Prediksi</button>
+                </form>
+                <div id="hasilPanen" class="mt-4 text-center"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rekomendasi Pupuk -->
+    <section id="pupuk" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center mb-8 text-green-600">Sistem Rekomendasi Pupuk</h3>
+            <div class="max-w-md mx-auto card p-6 rounded-lg bg-white">
+                <form id="pupukForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Kondisi Tanah</label>
+                        <select id="tanah" class="w-full px-3 py-2 border rounded-lg" required>
+                            <option value="">Pilih Kondisi</option>
+                            <option value="kering">Kering</option>
+                            <option value="basah">Basah</option>
+                            <option value="netral">Netral</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Jenis Tanaman</label>
+                        <select id="tanamanPupuk" class="w-full px-3 py-2 border rounded-lg" required>
+                            <option value="">Pilih Tanaman</option>
+                            <option value="padi">Padi</option>
+                            <option value="jagung">Jagung</option>
+                            <option value="cabai">Cabai</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-full hover:bg-green-700">Dapatkan Rekomendasi</button>
+                </form>
+                <div id="hasilPupuk" class="mt-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Konsultasi Mau Tanam Apa -->
+    <section id="konsultasi" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center mb-8 text-green-600">Konsultasi: Mau Tanam Apa?</h3>
+            <div class="max-w-md mx-auto card p-6 rounded-lg bg-gray-50">
+                <form id="konsultasiForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Lokasi</label>
+                        <input type="text" id="lokasi" class="w-full px-3 py-2 border rounded-lg" placeholder="Masukkan lokasi" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Jenis Tanah</label>
+                        <select id="jenisTanah" class="w-full px-3 py-2 border rounded-lg" required>
+                            <option value="">Pilih Jenis Tanah</option>
+                            <option value="berpasir">Berpasir</option>
+                            <option value="liat">Liat</option>
+                            <option value="humus">Humus</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-full hover:bg-green-700">Konsultasi</button>
+                </form>
+                <div id="hasilKonsultasi" class="mt-4 text-center"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Widget Cuaca -->
+    <section id="cuaca" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center mb-8 text-green-600">Widget Cuaca Real-time</h3>
+            <div class="max-w-md mx-auto card p-6 rounded-lg bg-white text-center">
+                <i class="fas fa-sun text-yellow-500 text-4xl mb-4"></i>
+                <h4 class="text-xl font-semibold">Cuaca Hari Ini</h4>
+                <p class="text-gray-600">Suhu: 28°C</p>
+                <p class="text-gray-600">Kelembapan: 65%</p>
+                <p class="text-gray-600">Curah Hujan: 0mm</p>
+                <p class="text-sm text-gray-500 mt-2">Data cuaca diperbarui setiap jam</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Katalog Pilihan Tanaman -->
+    <section id="katalog" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center mb-8 text-green-600">Katalog Pilihan Tanaman</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card p-6 rounded-lg bg-gray-50">
+                    <i class="fas fa-seedling text-green-600 text-3xl mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Padi</h4>
+                    <p class="text-gray-600 mb-4">Tanaman pangan utama. Cara menanam: Persiapkan lahan, tanam bibit, siram secara teratur.</p>
+                    <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700">Pelajari Lebih</button>
+                </div>
+                <div class="card p-6 rounded-lg bg-gray-50">
+                    <i class="fas fa-seedling text-green-600 text-3xl mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Jagung</h4>
+                    <p class="text-gray-600 mb-4">Tanaman serbaguna. Cara menanam: Tanam biji di lubang, jaga kelembapan tanah.</p>
+                    <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700">Pelajari Lebih</button>
+                </div>
+                <div class="card p-6 rounded-lg bg-gray-50">
+                    <i class="fas fa-seedling text-green-600 text-3xl mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Cabai</h4>
+                    <p class="text-gray-600 mb-4">Tanaman rempah. Cara menanam: Gunakan polybag, tanam bibit, berikan sinar matahari penuh.</p>
+                    <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700">Pelajari Lebih</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-600 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2026 Mari Tani. Platform untuk petani modern.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
